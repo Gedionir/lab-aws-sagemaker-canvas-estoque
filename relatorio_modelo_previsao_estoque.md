@@ -1,86 +1,54 @@
-📊 RELATÓRIO DE MODELO PREDITIVO DE ESTOQUE
-📋 PROJETO: previsao-estoque_inteligente - Versão 1
-Plataforma: Amazon SageMaker Canvas
-Tipo de Modelo: Regressão (Previsão Numérica)
-Data de Execução: Quick Build
+# 📊 RELATÓRIO DE MODELO PREDITIVO DE ESTOQUE
+## 📋 PROJETO: previsao-estoque_inteligente - Versão 1
+### Plataforma: Amazon SageMaker Canvas
+### Tipo de Modelo: Regressão (Previsão Numérica)
+### Data de Execução: Quick Build
 
-🎯 OBJETIVO DO MODELO
-Prever a QUANTIDADE_ESTOQUE com base em variáveis históricas para otimizar a gestão de inventário.
+## 🎯 OBJETIVO DO MODELO
 
-📊 DESEMPENHO DO MODELO
-Métricas Principais
-Métrica	Valor	Interpretação
-RMSE	26.756	Erro médio de ±26.756 unidades
-MSE	715.859	Variância quadrática dos erros
-MAE	19.198	Erro absoluto médio
-Interpretação do RMSE
+### Prever a QUANTIDADE_ESTOQUE com base em variáveis históricas para otimizar a gestão de inventário.
+
+## 📊 DESEMPENHO DO MODELO
+
+### Métricas Principais
+- Métrica	Valor	Interpretação
+- RMSE	26.756	Erro médio de ±26.756 unidades
+- MSE	715.859	Variância quadrática dos erros
+- MAE	19.198	Erro absoluto médio
+  
+### Interpretação do RMSE
 "O modelo frequentemente prevê valores que estão dentro de ±26.756 unidades do valor real de QUANTIDADE_ESTOQUE."
 
 Significado Prático:
 
-Estoque alto (500+ unidades): Erro de ~5% → ACEITÁVEL ✅
+* Estoque alto (500+ unidades): Erro de ~5% → ACEITÁVEL ✅
+* Estoque médio (100 unidades): Erro de ~27% → ATENÇÃO ⚠️
+* Estoque baixo (50 unidades): Erro de ~53% → CRÍTICO ❌
 
-Estoque médio (100 unidades): Erro de ~27% → ATENÇÃO ⚠️
+## 🔍 IMPACTO DAS VARIÁVEIS
 
-Estoque baixo (50 unidades): Erro de ~53% → CRÍTICO ❌
+### Ranking de Importância:
 
-🔍 IMPACTO DAS VARIÁVEIS
-Ranking de Importância
-DATA_EVENTO ⭐ (Mais importante)
+1- DATA_EVENTO ⭐ (Mais importante)
+2- ID_PRODUTO
+3- PRECO
+4- FLAG_PROMOCAO (Menos importante)
 
-ID_PRODUTO
 
-PRECO
+## 📈 VISUALIZAÇÕES DO MODELO
 
-FLAG_PROMOCAO (Menos importante)
+### Gráfico Predicted vs Actual:
 
-Análise das Features
-✅ DATA_EVENTO (1º lugar)
-Interpretação: Forte componente temporal/sazonal
+* X-axis: Valores previstos de QUANTIDADE_ESTOQUE
+* Y-axis: Valores reais de QUANTIDADE_ESTOQUE
+* Padrão observado: Dispersão moderada ao redor da linha ideal
+  
 
-Ação Recomendada: Extrair features derivadas:
+### Distribuição de Erros: 
 
-python
-# Features potenciais a criar
-dia_semana = data_evento.dia_da_semana()
-mes = data_evento.mes()
-trimestre = data_evento.trimestre()
-feriado = data_evento.eh_feriado()
-✅ ID_PRODUTO (2º lugar)
-Interpretação: Diferentes produtos têm comportamentos distintos
-
-Recomendação: Considerar modelos separados por categoria
-
-✅ PRECO (3º lugar)
-Interpretação: Relação preço-demanda-estoque funciona
-
-Melhoria: Testar interação com FLAG_PROMOCAO
-
-⚠️ FLAG_PROMOCAO (4º lugar)
-Interpretação: Impacto menor que o esperado
-
-Possíveis causas:
-
-Dados insuficientes sobre promoções
-
-Promoções mal documentadas
-
-Efeito já capturado por outras variáveis
-
-📈 VISUALIZAÇÕES DO MODELO
-Gráfico Predicted vs Actual
-X-axis: Valores previstos de QUANTIDADE_ESTOQUE
-
-Y-axis: Valores reais de QUANTIDADE_ESTOQUE
-
-Padrão observado: Dispersão moderada ao redor da linha ideal
-
-Distribuição de Erros
-MAE: ±19.198 unidades
-
-Densidade de erro: Analisar viés nos resíduos
-
-Recomendação: Verificar normalidade dos resíduos
+* MAE: ±19.198 unidades
+* Densidade de erro: Analisar viés nos resíduos
+* Recomendação: Verificar normalidade dos resíduos
 
 ✅ PONTOS FORTES
 Componente temporal bem capturado ✅
@@ -260,4 +228,5 @@ Tipo: Regressão numérica
 Build: Quick build
 
 Status: Treinamento completo
+
 
